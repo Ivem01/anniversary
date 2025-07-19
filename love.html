@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Notes ❤️</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Our Love Notes 💌</h1>
+        <p>You make every day special, my love. Thank you for being my everything. ❤️</p>
+        <p>Every moment with you feels like magic ✨</p>
+        <p>I can’t wait to spend forever with you 🥰</p>
+
+        <h3>Write a note back to me ❤️:</h3>
+        <textarea id="herNote" rows="5" cols="30" placeholder="Type your sweet message here..."></textarea>
+        <br>
+        <button onclick="saveNote()">Send</button>
+        <p id="response" style="margin-top: 10px; color: green;"></p>
+
+        <button id="downloadBtn" style="display:none;" onclick="downloadNote()">Download Your Note ❤️</button>
+        <br><br>
+        <a href="index.html" class="btn">Back to Home</a>
+        <div class="heart"></div>
+    </div>
+
+    <script>
+        let savedNote = "";
+
+        function saveNote() {
+            const note = document.getElementById("herNote").value.trim();
+            if(note !== "") {
+                savedNote = note;
+                alert("Your note: \n\n" + savedNote); // 💌 Pop-up to show her note
+                document.getElementById("response").innerText = "Your note was sent! ❤️";
+                document.getElementById("herNote").value = "";
+                document.getElementById("downloadBtn").style.display = "inline-block"; // Show download button
+            } else {
+                document.getElementById("response").innerText = "Please write something first 🥺";
+            }
+        }
+
+        function downloadNote() {
+            const blob = new Blob([savedNote], { type: 'text/plain' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = "Her_Love_Note.txt";
+            link.click();
+        }
+    </script>
+</body>
+</html>
